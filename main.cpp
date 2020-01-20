@@ -410,8 +410,7 @@ void RectaPlano() {//Juan
     int pun = 0;
     cout << "en que ecuacion quieres dar las rectas\n",
             cout << "1 para vectorial,"
-                    "\n2 para parametricas,"
-                    "\n3 para continua ",
+                    "\n2 para parametricas,",
             cin >> ec;
     if (ec == 1) {
         int cont = 0;
@@ -874,7 +873,7 @@ void tresPlanos() {//Juan
         b3=plano33[1];
         c3=plano33[2];
         d3=plano33[3];
-        cout<<a1<<" "<<b1<<" "<<c1<<" "<<d1<<" "<<a2<<" "<<b2<<" "<<c2<<" "<<d2<<" "<<a3<<" "<<b3<<" "<<c3<<" "<<d3;
+
 
 
 
@@ -1050,9 +1049,9 @@ int posiciones3Planos(int matriz[3][4]){//Sergio
 
 }
 int main() {
-    int cent=1;
-    while (cent != 0) {
-        int n;
+    int n=1;
+    while (n != 0) {
+
         cout<<"\n------------------------------------------------------------\n";
         cout << "1 para 2 rectas,"
                 "\n2 para 2 planos,"
