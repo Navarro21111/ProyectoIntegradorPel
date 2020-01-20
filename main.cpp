@@ -6,6 +6,11 @@ int punto1[3], punto2[3], vector1[3], vector2[3],punto3[3],vector3[3];
 string plano1[9],plano2[9],plano3[9];
 int suma;
 int plano11[6],plano22[6],plano33[6];
+
+int posicones2Rectas( int matrizA[3][3]);
+int posiciones2Planos(int matriz[2][4]);
+int posiciones3Planos(int matriz[3][4]);
+
 string pedirRecta(){
     string recta;
     cin >> recta;
@@ -16,150 +21,7 @@ int calcular(int a ,int b,int c,int d){
     return resultado;
 
 }
-int posicones2Rectas( int matrizA[3][3]){//Sergio
 
-    int rangoM=0;
-    int rangoAmp=0;
-    int det1=matrizA[0][0]*matrizA[1][1]-(matrizA[0][1]*matrizA[1][0]);//para calcular el primer determinate de 2x2
-    int det2=matrizA[1][0]*matrizA[2][1]-(matrizA[1][1]*matrizA[2][0]);//para calcular el segundo determinante de 2x2
-    //calcular determinantes para la matriz ampliada
-    int detA1=matrizA[0][0]*matrizA[1][0]-(matrizA[0][0]*matrizA[1][0]);//
-    int detA2=matrizA[1][0]*matrizA[2][2]-(matrizA[1][2]*matrizA[2][0]);//determinantes
-    int detA3=matrizA[0][2]*matrizA[1][1]-(matrizA[0][1]*matrizA[1][2]);//de la ampliada
-    int detA4=matrizA[1][2]*matrizA[2][1]-(matrizA[1][1]*matrizA[2][2]);//
-
-    //para el rango de la matriz
-    if(det1!=0 || det2!=0){
-        rangoM=2;
-    }else{
-        rangoM=1;
-    }
-    //para el rango de la matriz ampliada
-    if(detA1!=0||detA2!=0||detA3!=0||detA4!=0){
-        rangoAmp=2;
-    }else{
-        rangoAmp=1;
-    }
-
-    if(rangoM==2&&rangoAmp==2){
-        cout<<"las dos rectas son secantes";
-    }else if(rangoM==1&&rangoAmp==2){
-        cout<<"las dos rectas son paralelas";
-    }else{
-        cout<<"las dos rectas son coincidentes";
-
-    }
-
-}
-int posiciones2Planos(int matriz[2][4]){//Sergio
-    int rangoM=0;
-    int rangoAmp=0;
-
-    //los diferentes determinantes necesarios
-    int det1=matriz[0][0]*matriz[1][1]-(matriz[0][1]*matriz[1][0]);
-    int det2=matriz[0][1]*matriz[1][2]-(matriz[0][2]*matriz[1][1]);
-    int det3=matriz[0][0]*matriz[1][2]-(matriz[0][2]*matriz[1][0]);
-
-    int detA1=matriz[0][0]*matriz[1][3]-(matriz[0][3]*matriz[1][0]);
-    int detA2=matriz[0][1]*matriz[1][3]-(matriz[0][3]*matriz[1][1]);
-    int detA3=matriz[0][2]*matriz[1][3]-(matriz[0][3]*matriz[1][2]);
-
-    //para ver el rango que tienen
-    if(det1!=0||det2!=0||det3!=0){
-        rangoM=2;
-    }else{
-        rangoM=1;
-    }
-    if(detA1!=0||detA2!=0||detA3!=0){
-        rangoAmp=2;
-    }else{
-        rangoAmp=1;
-    }
-
-    if(rangoM==2&&rangoAmp==2){
-        cout<<"Los dos planos se cortan";
-    }else if(rangoM==1&&rangoAmp==2){
-        cout<<"Los dos planos son paralelos";
-    }else{
-        cout<<"Los dos planos son coincidentes";
-    }
-
-}
-int posiciones3Planos(int matriz[3][4]){//Sergio
-    int rangoM=0;
-    int rangoAmp=0;
-
-
-    int det1=matriz[0][0]*matriz[1][1]*matriz[2][2]+
-             matriz[1][2]*matriz[0][1]*matriz[2][0]+
-             matriz[2][1]*matriz[1][0]*matriz[0][2]-
-             (matriz[0][2]*matriz[1][1]*matriz[2][0]+
-              matriz[2][1]*matriz[1][2]*matriz[0][0]+
-              matriz[1][0]*matriz[0][1]*matriz[2][2]);
-    int det2=matriz[0][0]*matriz[1][1]-(matriz[0][1]*matriz[1][0]);
-    int det3=matriz[0][1]*matriz[1][2]-(matriz[0][2]*matriz[1][1]);
-    int det4=matriz[1][0]*matriz[2][1]-(matriz[1][1]*matriz[2][0]);
-    int det5=matriz[0][1]*matriz[1][2]-(matriz[0][2]*matriz[1][1]);
-
-    //para ver el rango de 3 de la ampliada
-    int detA1=matriz[0][0]*matriz[1][1]*matriz[2][3]+
-              matriz[1][3]*matriz[0][1]*matriz[2][0]+
-              matriz[2][1]*matriz[1][0]*matriz[0][3]-
-              (matriz[0][3]*matriz[1][1]*matriz[2][0]+
-               matriz[2][1]*matriz[1][3]*matriz[0][0]+
-               matriz[1][0]*matriz[0][1]*matriz[2][3]);
-
-    int detA2=matriz[0][0]*matriz[1][3]*matriz[2][2]+
-              matriz[1][2]*matriz[0][3]*matriz[2][0]+
-              matriz[2][3]*matriz[1][0]*matriz[0][2]-
-              (matriz[0][2]*matriz[1][3]*matriz[2][0]+
-               matriz[2][3]*matriz[1][2]*matriz[0][0]+
-               matriz[1][0]*matriz[0][3]*matriz[2][2]);
-
-    int detA3=matriz[0][3]*matriz[1][1]*matriz[2][2]+
-              matriz[1][2]*matriz[0][1]*matriz[2][3]+
-              matriz[2][1]*matriz[1][3]*matriz[0][2]-
-              (matriz[0][2]*matriz[1][1]*matriz[2][3]+
-               matriz[2][1]*matriz[1][2]*matriz[0][3]+
-               matriz[1][3]*matriz[0][1]*matriz[2][2]);
-    //para ver el rango 2
-    int detA4=matriz[0][0]*matriz[1][3]-(matriz[0][3]*matriz[1][0]);
-    int detA5=matriz[0][1]*matriz[1][3]-(matriz[0][3]*matriz[1][1]);
-    int detA6=matriz[0][2]*matriz[1][3]-(matriz[0][3]*matriz[1][2]);
-    int detA7=matriz[1][0]*matriz[2][3]-(matriz[1][3]*matriz[2][0]);
-    int detA8=matriz[1][1]*matriz[2][3]-(matriz[1][3]*matriz[2][1]);
-    int detA9=matriz[1][2]*matriz[2][3]-(matriz[1][3]*matriz[2][2]);
-
-    if(det1!=0){
-        rangoM=3;
-    }else if(det2!=0|| det3!=0|| det4!=0||det5!=0){
-        rangoM=2;
-    }else{
-        rangoM=1;
-    }
-
-    if(detA1!=0||detA2!=0||detA3!=0){
-        rangoAmp=3;
-    }else if(detA4!=0||detA5!=0||detA6!=0||detA7!=0||detA8!=0||detA9!=0){
-        rangoAmp=2;
-    }else{
-        rangoAmp=1;
-    }
-
-    if(rangoM==3&rangoAmp==3){
-        cout<<"Los planos se cortan en un punto";
-    }if(rangoM==2&rangoAmp==3){
-        cout<<"Los planos se cortan 2 a 2";
-    }if(rangoM==2&rangoAmp==2){
-        cout<<"Los planos se cortan 2 a 2";
-    }if(rangoM==1&&rangoAmp==2){
-        cout<<"Los planos son paralelos";
-    }if(rangoM==1&&rangoAmp==1){
-        cout<<"Los planos son coincidentes";
-    }
-
-
-}
 void dosRectas(){//Juan
     int ec;
     int vec=0;
@@ -623,14 +485,14 @@ void RectaPlano() {//Juan
         int q=a1*vector1[0]+b1*vector1[1]+c1*vector1[2];
         if(q==0){
             if(p==0){
-                cout<<"la recta esta contenida en el plano";
+                cout<<"la recta esta contenida en el plano\n";
             }
             else{
-                cout<<"La recta y el plano son paralelos";
+                cout<<"La recta y el plano son paralelos\n";
             }
         }
         else{
-            cout<<"se cortan en un punto";
+            cout<<"se cortan en un punto\n";
 
         }
 
@@ -1042,16 +904,163 @@ void tresPlanos() {//Juan
 
 
 }
+
+int posicones2Rectas( int matrizA[3][3]){//Sergio
+
+    int rangoM=0;
+    int rangoAmp=0;
+    int det1=matrizA[0][0]*matrizA[1][1]-(matrizA[0][1]*matrizA[1][0]);//para calcular el primer determinate de 2x2
+    int det2=matrizA[1][0]*matrizA[2][1]-(matrizA[1][1]*matrizA[2][0]);//para calcular el segundo determinante de 2x2
+    //calcular determinantes para la matriz ampliada
+    int detA1=matrizA[0][0]*matrizA[1][0]-(matrizA[0][0]*matrizA[1][0]);//
+    int detA2=matrizA[1][0]*matrizA[2][2]-(matrizA[1][2]*matrizA[2][0]);//determinantes
+    int detA3=matrizA[0][2]*matrizA[1][1]-(matrizA[0][1]*matrizA[1][2]);//de la ampliada
+    int detA4=matrizA[1][2]*matrizA[2][1]-(matrizA[1][1]*matrizA[2][2]);//
+
+    //para el rango de la matriz
+    if(det1!=0 || det2!=0){
+        rangoM=2;
+    }else{
+        rangoM=1;
+    }
+    //para el rango de la matriz ampliada
+    if(detA1!=0||detA2!=0||detA3!=0||detA4!=0){
+        rangoAmp=2;
+    }else{
+        rangoAmp=1;
+    }
+
+    if(rangoM==2&&rangoAmp==2){
+        cout<<"las dos rectas son secantes\n";
+    }else if(rangoM==1&&rangoAmp==2){
+        cout<<"las dos rectas son paralelas\n";
+    }else{
+        cout<<"las dos rectas son coincidentes\n";
+
+    }
+
+}
+int posiciones2Planos(int matriz[2][4]){//Sergio
+    int rangoM=0;
+    int rangoAmp=0;
+
+    //los diferentes determinantes necesarios
+    int det1=matriz[0][0]*matriz[1][1]-(matriz[0][1]*matriz[1][0]);
+    int det2=matriz[0][1]*matriz[1][2]-(matriz[0][2]*matriz[1][1]);
+    int det3=matriz[0][0]*matriz[1][2]-(matriz[0][2]*matriz[1][0]);
+
+    int detA1=matriz[0][0]*matriz[1][3]-(matriz[0][3]*matriz[1][0]);
+    int detA2=matriz[0][1]*matriz[1][3]-(matriz[0][3]*matriz[1][1]);
+    int detA3=matriz[0][2]*matriz[1][3]-(matriz[0][3]*matriz[1][2]);
+
+    //para ver el rango que tienen
+    if(det1!=0||det2!=0||det3!=0){
+        rangoM=2;
+    }else{
+        rangoM=1;
+    }
+    if(detA1!=0||detA2!=0||detA3!=0){
+        rangoAmp=2;
+    }else{
+        rangoAmp=1;
+    }
+
+    if(rangoM==2&&rangoAmp==2){
+        cout<<"Los dos planos se cortan\n";
+    }else if(rangoM==1&&rangoAmp==2){
+        cout<<"Los dos planos son paralelos\n";
+    }else{
+        cout<<"Los dos planos son coincidentes\n";
+    }
+
+}
+int posiciones3Planos(int matriz[3][4]){//Sergio
+    int rangoM=0;
+    int rangoAmp=0;
+
+
+    int det1=matriz[0][0]*matriz[1][1]*matriz[2][2]+
+             matriz[1][2]*matriz[0][1]*matriz[2][0]+
+             matriz[2][1]*matriz[1][0]*matriz[0][2]-
+             (matriz[0][2]*matriz[1][1]*matriz[2][0]+
+              matriz[2][1]*matriz[1][2]*matriz[0][0]+
+              matriz[1][0]*matriz[0][1]*matriz[2][2]);
+    int det2=matriz[0][0]*matriz[1][1]-(matriz[0][1]*matriz[1][0]);
+    int det3=matriz[0][1]*matriz[1][2]-(matriz[0][2]*matriz[1][1]);
+    int det4=matriz[1][0]*matriz[2][1]-(matriz[1][1]*matriz[2][0]);
+    int det5=matriz[0][1]*matriz[1][2]-(matriz[0][2]*matriz[1][1]);
+
+    //para ver el rango de 3 de la ampliada
+    int detA1=matriz[0][0]*matriz[1][1]*matriz[2][3]+
+              matriz[1][3]*matriz[0][1]*matriz[2][0]+
+              matriz[2][1]*matriz[1][0]*matriz[0][3]-
+              (matriz[0][3]*matriz[1][1]*matriz[2][0]+
+               matriz[2][1]*matriz[1][3]*matriz[0][0]+
+               matriz[1][0]*matriz[0][1]*matriz[2][3]);
+
+    int detA2=matriz[0][0]*matriz[1][3]*matriz[2][2]+
+              matriz[1][2]*matriz[0][3]*matriz[2][0]+
+              matriz[2][3]*matriz[1][0]*matriz[0][2]-
+              (matriz[0][2]*matriz[1][3]*matriz[2][0]+
+               matriz[2][3]*matriz[1][2]*matriz[0][0]+
+               matriz[1][0]*matriz[0][3]*matriz[2][2]);
+
+    int detA3=matriz[0][3]*matriz[1][1]*matriz[2][2]+
+              matriz[1][2]*matriz[0][1]*matriz[2][3]+
+              matriz[2][1]*matriz[1][3]*matriz[0][2]-
+              (matriz[0][2]*matriz[1][1]*matriz[2][3]+
+               matriz[2][1]*matriz[1][2]*matriz[0][3]+
+               matriz[1][3]*matriz[0][1]*matriz[2][2]);
+    //para ver el rango 2
+    int detA4=matriz[0][0]*matriz[1][3]-(matriz[0][3]*matriz[1][0]);
+    int detA5=matriz[0][1]*matriz[1][3]-(matriz[0][3]*matriz[1][1]);
+    int detA6=matriz[0][2]*matriz[1][3]-(matriz[0][3]*matriz[1][2]);
+    int detA7=matriz[1][0]*matriz[2][3]-(matriz[1][3]*matriz[2][0]);
+    int detA8=matriz[1][1]*matriz[2][3]-(matriz[1][3]*matriz[2][1]);
+    int detA9=matriz[1][2]*matriz[2][3]-(matriz[1][3]*matriz[2][2]);
+
+    if(det1!=0){
+        rangoM=3;
+    }else if(det2!=0|| det3!=0|| det4!=0||det5!=0){
+        rangoM=2;
+    }else{
+        rangoM=1;
+    }
+
+    if(detA1!=0||detA2!=0||detA3!=0){
+        rangoAmp=3;
+    }else if(detA4!=0||detA5!=0||detA6!=0||detA7!=0||detA8!=0||detA9!=0){
+        rangoAmp=2;
+    }else{
+        rangoAmp=1;
+    }
+
+    if(rangoM==3&rangoAmp==3){
+        cout<<"Los planos se cortan en un punto\n";
+    }if(rangoM==2&rangoAmp==3){
+        cout<<"Los planos se cortan 2 a 2\n";
+    }if(rangoM==2&rangoAmp==2){
+        cout<<"Los planos se cortan 2 a 2\n";
+    }if(rangoM==1&&rangoAmp==2){
+        cout<<"Los planos son paralelos\n";
+    }if(rangoM==1&&rangoAmp==1){
+        cout<<"Los planos son coincidentes\n";
+    }
+
+
+}
 int main() {
     int cent=1;
     while (cent != 0) {
         int n;
+        cout<<"\n------------------------------------------------------------\n";
         cout << "1 para 2 rectas,"
                 "\n2 para 2 planos,"
                 "\n3 para plano y recta, "
                 "\n4 para 3 planos "
                 "\n0 para salir",
                 cin >> n;
+        cout<<"\n------------------------------------------------------------\n";
 
         if (n == 1) {
             dosRectas();
