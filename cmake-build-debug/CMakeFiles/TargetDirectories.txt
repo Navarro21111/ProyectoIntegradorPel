@@ -1,0 +1,3 @@
+C:/Users/manpa/CLionProjects/ProyectoIntegrador/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/manpa/CLionProjects/ProyectoIntegrador/cmake-build-debug/CMakeFiles/oroyecto.dir
+C:/Users/manpa/CLionProjects/ProyectoIntegrador/cmake-build-debug/CMakeFiles/edit_cache.dir
